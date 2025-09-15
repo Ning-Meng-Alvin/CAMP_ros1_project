@@ -1,0 +1,61 @@
+use_gazebo: false
+
+command_in_type: speed_units
+
+publish_period: 0.0025               # publish period = 400 Hz
+collision_check_rate: 50.0           # collision check frequency
+num_outgoing_halt_msgs_to_publish: 2
+
+scale:
+  linear: 20.0
+  rotational: 0.5
+  joint: 20.0
+
+low_pass_filter_coeff: 0.0           # =0 means no filtering
+
+# Input topics
+cartesian_command_in_topic: "/servo_server/delta_twist_cmds"
+joint_command_in_topic: "/servo_server/joint_cmds"
+joint_topic: "/joint_states"
+
+# Frames
+robot_link_command_frame: "panda_link0"  # = planning_frame
+planning_frame: "panda_link0"
+ee_frame_name: "panda_link8"
+
+# Timeout / singularity thresholds
+incoming_command_timeout: 0.1
+lower_singularity_threshold: 30
+hard_stop_singularity_threshold: 45
+
+rotational_speed_limit: 1.5
+rotational_acceleration_limit: 8.0
+linear_speed_limit: 1.0
+linear_acceleration_limit: 2.0
+
+# MoveIt / controller settings
+move_group_name: "Panda_arm"          
+use_gazebo: false
+joint_limit_margin: 0.1
+
+# Output (message type/topic sent to the controller)
+command_out_type: "trajectory_msgs/JointTrajectory"
+command_out_topic: "/Panda_arm_controller/command"
+
+publish_joint_positions:  true
+publish_joint_velocities: true
+publish_joint_accelerations: false
+
+# Collision checking
+check_collisions: false
+collision_check_type: "threshold_distance"
+self_collision_proximity_threshold: 0.01
+scene_collision_proximity_threshold: 0.02
+collision_distance_safety_factor: 1.0
+min_allowable_collision_distance: 0.0
+
+# Status topic (called status_topic in newer versions)
+status_topic: "/servo_server/status"
+
+# Low-latency mode
+low_latency_mode: true

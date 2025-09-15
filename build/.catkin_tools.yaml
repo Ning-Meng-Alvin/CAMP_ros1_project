@@ -1,0 +1,6 @@
+devel_space: /home/camp/ros1_project/devel
+install: false
+install_space: /home/camp/ros1_project/install
+profile: default
+source_space: /home/camp/ros1_project/src
+workspace: /home/camp/ros1_project

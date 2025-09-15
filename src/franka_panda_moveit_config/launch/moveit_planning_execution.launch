@@ -1,0 +1,68 @@
+<launch>
+
+  <arg name="robot_ip" default="172.16.0.2"/>  
+  <arg name="load_gripper" default="false"/>
+  <arg name="use_rviz" default="true"/>
+
+  <!-- 1. franka_control -->
+  <include file="$(find franka_control)/launch/franka_control.launch">
+    <arg name="robot_ip" value="$(arg robot_ip)"/>
+    <arg name="load_gripper" value="$(arg load_gripper)"/>
+  </include>
+
+  <!-- 2. 启ros_controllers（ -->
+  <include file="$(find franka_panda_moveit_config)/launch/ros_controllers.launch"/>
+
+  <!-- 3. robot description + SRDF + kinematics -->
+  <include file="$(find franka_panda_moveit_config)/launch/planning_context.launch"/>
+
+  <!-- 4. simple_moveit_controllers.yaml -->
+  <include file="$(find franka_panda_moveit_config)/launch/simple_moveit_controller_manager.launch.xml"/>
+
+  <!-- 5. MoveIt  -->
+  <include file="$(find franka_panda_moveit_config)/launch/move_group.launch"/>
+
+  <!-- 6. RViz -->
+  <group if="$(arg use_rviz)">
+    <include file="$(find franka_panda_moveit_config)/launch/moveit_rviz.launch"/>
+  </group>
+  
+  <!-- 7. spacenav -->
+  <node pkg="spacenav_node" type="spacenav_node" name="spacenav_node" output="screen">
+  </node>
+
+  <!-- 8. velocity_control_servo_node -->
+  <node pkg="velocity_control_servo_node" type="velocity_control_servo_node" name="velocity_control_servo_node" output="screen">
+    <param name="base_frame" value="panda_link0"/>
+    <param name="input_topic" value="/velocity_cmd"/>
+    <param name="output_topic" value="/servo_server/delta_twist_cmds"/>
+    <param name="pub_rate_hz" value="400.0"/>
+    <param name="enable_filter" value="true"/>
+    <param name="cutoff_hz" value="15.0"/>
+    <param name="max_linear" value="3.0"/>
+    <param name="max_angular" value="1.0"/>
+    <param name="max_linear_slew" value="1.0"/>
+    <param name="max_angular_slew" value="4.0"/>
+    <param name="timeout_s" value="0.2"/>
+    <param name="zero_on_timeout" value="true"/>
+  </node>
+
+    <!-- 9. spacemouse_to_servo -->
+  <node pkg="spacemouse_to_servo" type="spacemouse_to_servo_node" name="spacemouse_to_servo" output="screen">
+    <param name="base_frame" value="panda_link0"/>
+    <param name="input_topic" value="/spacenav/twist"/>
+    <param name="output_topic" value="/velocity_cmd"/>
+    <param name="gain_linear" value="3.0"/>
+    <param name="gain_angular" value="1.0"/>
+    <param name="deadzone_lin" value="0.0001"/>
+    <param name="deadzone_ang" value="0.0001"/>
+    <param name="cutoff_hz" value="15.0"/>
+    <param name="exp_curve" value="0.0"/>
+    <param name="max_linear" value="2.0"/>
+    <param name="max_angular" value="2.0"/>
+  </node>
+
+  <!-- 10.  MoveIt Servo -->
+  <!-- <include file="$(find franka_panda_moveit_config)/launch/my_servo.launch"/> -->
+
+</launch>

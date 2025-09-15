@@ -1,0 +1,8 @@
+prefix=/home/camp/ros1_project/install
+
+Name: velocity_control_servo_node
+Description: Description of velocity_control_servo_node
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

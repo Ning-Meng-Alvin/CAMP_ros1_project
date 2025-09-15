@@ -1,0 +1,8 @@
+prefix=/home/camp/ros1_project/devel
+
+Name: chomp_motion_planner
+Description: Description of chomp_motion_planner
+Version: 1.1.16
+Cflags: -I/home/camp/ros1_project/src/moveit/moveit_planners/chomp/chomp_motion_planner/include
+Libs: -L${prefix}/lib -lchomp_motion_planner
+Requires: 

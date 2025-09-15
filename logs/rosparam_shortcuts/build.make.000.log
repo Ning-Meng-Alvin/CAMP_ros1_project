@@ -1,0 +1,8 @@
+[35m[1mScanning dependencies of target rosparam_shortcuts[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/rosparam_shortcuts.dir/src/rosparam_shortcuts.cpp.o[0m
+[ 50%] [32m[1mLinking CXX shared library /home/camp/ros1_project/devel/lib/librosparam_shortcuts.so[0m
+[ 50%] Built target rosparam_shortcuts
+[35m[1mScanning dependencies of target rosparam_shortcuts_example[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/rosparam_shortcuts_example.dir/src/example.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/camp/ros1_project/devel/lib/rosparam_shortcuts/example[0m
+[100%] Built target rosparam_shortcuts_example

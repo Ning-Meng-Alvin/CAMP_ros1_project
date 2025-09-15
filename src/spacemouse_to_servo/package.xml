@@ -1,0 +1,11 @@
+<package format="2">
+  <name>spacemouse_to_servo</name>
+  <version>0.0.1</version>
+  <description>Upper-layer filtering and velocity generation from SpaceMouse to Servo (ROS1)</description>
+  <maintainer email="pei_liu0913@163.com">you</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>geometry_msgs</depend>
+</package>
