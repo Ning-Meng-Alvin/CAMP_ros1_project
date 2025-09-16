@@ -28,7 +28,7 @@ public:
 
     // Optional watchdog: if no input for T seconds, publish a single zero Twist
     pnh_.param<bool>("enable_watchdog", enable_watchdog_, false);
-    pnh_.param<double>("watchdog_timeout_s", watchdog_timeout_s_, 0.3);
+    pnh_.param<double>("watchdog_timeout_s", watchdog_timeout_s_, 0.1);
 
     sub_ = nh_.subscribe(input_topic_, 100, &SpacemouseToServo::onRaw, this);
     pub_ = nh_.advertise<geometry_msgs::TwistStamped>(output_topic_, 100);

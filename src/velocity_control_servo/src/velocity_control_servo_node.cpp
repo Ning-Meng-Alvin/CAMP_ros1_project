@@ -26,17 +26,17 @@ public:
     pnh_.param<double>("pub_rate_hz", pub_rate_hz_, 400.0);   // 100–400 Hz
 
     // Physical limits & slew rate
-    pnh_.param<double>("max_linear",        max_linear_,        1.0); // m/s (or unitless = 1.0)
-    pnh_.param<double>("max_angular",       max_angular_,       1.0); // rad/s (or unitless = 1.0)
-    pnh_.param<double>("max_linear_slew",   max_linear_slew_,   8.0); // m/s^2 (or unitless/s)
-    pnh_.param<double>("max_angular_slew",  max_angular_slew_, 20.0); // rad/s^2 (or unitless/s)
+    pnh_.param<double>("max_linear",        max_linear_,        1.0); // m/s  
+    pnh_.param<double>("max_angular",       max_angular_,       1.0); // rad/s 
+    pnh_.param<double>("max_linear_slew",   max_linear_slew_,   8.0); // m/s^2 
+    pnh_.param<double>("max_angular_slew",  max_angular_slew_, 20.0); // rad/s^2 
 
     // Watchdog
     pnh_.param<double>("timeout_s",        timeout_s_,        0.15);
     pnh_.param<bool>("zero_on_timeout",    zero_on_timeout_,  true);
 
     // Optional clipping [-1,1]
-    // pnh_.param<bool>("clip_to_unit",       clip_to_unit_,     true);  
+    pnh_.param<bool>("clip_to_unit",       clip_to_unit_,     true);  
     pnh_.param<bool>("immediate_publish",  immediate_pub_,    true); // publish immediately on new msg
 
     sub_   = nh_.subscribe(input_topic_, 100, &VelocityControlServoNode::onIn, this);

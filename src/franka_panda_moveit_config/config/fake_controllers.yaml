@@ -1,5 +1,5 @@
 controller_list:
-  - name: fake_Panda_arm_controller
+  - name: fake_panda_arm_controller
     type: $(arg fake_execution_type)
     joints:
       - panda_joint1

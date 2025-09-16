@@ -17,4 +17,4 @@ rostopic echo /servo_server/status
 
 rostopic echo /servo_server/delta_twist_cmds
 
-rostopic echo -n 5 /Panda_arm_controller/command
+rostopic echo -n 5 /panda_arm_controller/command
