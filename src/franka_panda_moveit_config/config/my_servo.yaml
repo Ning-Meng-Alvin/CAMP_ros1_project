@@ -2,16 +2,16 @@ use_gazebo: false
 
 command_in_type: speed_units
 
-publish_period: 0.01         # publish period = 100 Hz
+publish_period: 0.008         # publish period = 125 Hz
 collision_check_rate: 50.0           # collision check frequency
 num_outgoing_halt_msgs_to_publish: 4
 
 scale:
-  linear: 1.5
-  rotational: 5000.0
+  linear: 2.0
+  rotational: 10000.0
   joint: 1.0
 
-low_pass_filter_coeff: 0.05     # slide filtering
+low_pass_filter_coeff: 0.03     # slide filtering
 
 # Input topics
 cartesian_command_in_topic: "/servo_server/delta_twist_cmds"
@@ -24,12 +24,12 @@ planning_frame: "panda_link0"
 ee_frame_name: "panda_link8"
 
 # Timeout / singularity thresholds
-incoming_command_timeout: 0.03
+incoming_command_timeout: 0.05
 lower_singularity_threshold: 300
 hard_stop_singularity_threshold: 450
 
-rotational_speed_limit: 5000.0
-rotational_acceleration_limit: 800.0
+rotational_speed_limit: 10000.0
+rotational_acceleration_limit: 2000.0
 linear_speed_limit: 2.0
 linear_acceleration_limit: 0.3
 
